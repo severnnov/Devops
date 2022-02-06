@@ -15,4 +15,4 @@ RUN mvn package -B -f /tmp/mvn/1
 RUN cp /tmp/mvn/1/target/WebApp.war /home/tomcat9/apache-tomcat-9.0.58/webapps/
 EXPOSE 8080
 
-CMD ["/home/tomcat9/apache-tomcat-9.0.58/bin/catalina.sh run"]
+CMD ["/home/tomcat9/apache-tomcat-9.0.58/bin/catalina.sh"]

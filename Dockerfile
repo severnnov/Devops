@@ -13,5 +13,5 @@ RUN apt-get install -y git
 RUN git clone https://github.com/deepshankaryadav/CyberFRAT-DevSecOps-Training-Sample-Java-App.git "/tmp/mvn/1"
 RUN mvn package -B -f /tmp/mvn/1
 EXPOSE 8080
-RUN cp /tmp/mvn/1/target/WebApp.war /home/tomcat9/webapps/
+RUN cp /tmp/mvn/1/target/WebApp.war /home/tomcat9/apache-tomcat-9.0.58/webapps/
 CMD [/home/severov/tomcat9/apache-tomcat-9.0.58/bin/catalina.sh, "run"]

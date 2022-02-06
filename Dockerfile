@@ -1,10 +1,5 @@
-FROM ubuntu:16.04
-RUN apt-get update
-#RUN apt-get install -y tomcat8
-RUN apt-get install -y maven
-RUN apt-get install -y git
-RUN git clone https://github.com/deepshankaryadav/CyberFRAT-DevSecOps-Training-Sample-Java-App.git "/tmp/mvn/1"
-RUN mvn package -B -f /tmp/mvn/1
+#FROM ubuntu:16.04
+
 
 FROM eclipse-temurin:8-jre-focal
 
@@ -40,7 +35,12 @@ RUN set -eux; \
 		echo >&2 "$nativeLines"; \
 		exit 1; \
 	fi
-
+RUN apt-get update
+#RUN apt-get install -y tomcat8
+RUN apt-get install -y maven
+RUN apt-get install -y git
+RUN git clone https://github.com/deepshankaryadav/CyberFRAT-DevSecOps-Training-Sample-Java-App.git "/tmp/mvn/1"
+RUN mvn package -B -f /tmp/mvn/1
 EXPOSE 8080
 RUN cp /tmp/mvn/1/target/WebApp.war /var/lib/tomcat8/webapps/
 CMD ["catalina.sh", "run"]

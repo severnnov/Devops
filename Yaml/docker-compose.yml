@@ -3,7 +3,7 @@ services:
   tomcat:
     build: Tomcat
     volumes:
-      - mydata: /home/tomcat9/apache-tomcat-9.0.58/webapps/
+      - mydata:/home/tomcat9/apache-tomcat-9.0.58/webapps/
     ports:
       - "8080:8080"
     depends_on:
@@ -11,7 +11,7 @@ services:
   maven:
     build: maven
     volumes:
-      - mydata: /tmp/mvn/1
+      - mydata:/tmp/mvn/1
 
-  volumes:
+volumes:
     mydata:

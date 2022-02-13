@@ -11,7 +11,7 @@ services:
   maven:
     build: mvn
     volumes:
-      - mydata:/tmp/mvn/1
+      - mydata:/tmp/mvn/1/target/
 
 volumes:
     mydata:

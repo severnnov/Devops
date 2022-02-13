@@ -9,7 +9,7 @@ services:
     depends_on:
       - "maven"
   maven:
-    build: maven
+    build: mvn
     volumes:
       - mydata:/tmp/mvn/1
 

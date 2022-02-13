@@ -1,5 +1,5 @@
-FROM alpine
-RUN apk add --update --no-cache wget openjdk11
+FROM openjdk:11-alpine
+RUN apk add --update --no-cache wget
 RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.58/bin/apache-tomcat-9.0.58.tar.gz
 RUN mkdir /home/tomcat9/
 RUN tar xzvf apache-tomcat-9.0.58.tar.gz -C "/home/tomcat9/"

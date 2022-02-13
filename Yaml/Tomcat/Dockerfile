@@ -1,28 +1,31 @@
-FROM adoptopenjdk/openjdk12-openj9:x86_64-alpine-jre-12.0.2_10_openj9-0.15.1
+FROM jeanblanchard/java:8
+MAINTAINER Jean Blanchard <jean@blanchard.io>
 
-ENV TOMCAT_MAJOR=9 \
-    TOMCAT_VERSION=9.0.44
-
-RUN apk -U upgrade --update && \
-    wget -O /tmp/apache-tomcat.tar.gz https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
-    tar -C /opt -xvf /tmp/apache-tomcat.tar.gz && \
-    ln -s /opt/apache-tomcat-${TOMCAT_VERSION}/ /usr/local/tomcat && \
-    rm -rf /usr/local/tomcat/webapps/* && \
-    rm -rf /tmp/apache-tomcat.tar.gz && \
-    addgroup -g 2000 tomcat && \
-    adduser -h /usr/local/tomcat -u 2000 -G tomcat -s /bin/sh -D tomcat && \
-    mkdir -p /usr/local/tomcat/logs && \
-    mkdir -p /usr/local/tomcat/work && \
-    chown -R tomcat:tomcat /usr/local/tomcat/ && \
-    chmod -R u+wxr /usr/local/tomcat
-
-ENV CATALINA_HOME /usr/local/tomcat/
-ENV PATH $CATALINA_HOME/bin:$PATH
-ENV TOMCAT_NATIVE_LIBDIR=$CATALINA_HOME/native-jni-lib
-ENV LD_LIBRARY_PATH=$CATALINA_HOME/native-jni-lib
-
-WORKDIR $CATALINA_HOME
-USER tomcat
+# Expose web port
 EXPOSE 8080
 
-CMD ["catalina.sh", "run"]
+# Tomcat Version
+ENV TOMCAT_VERSION_MAJOR 9
+ENV TOMCAT_VERSION_FULL  9.0.21
+
+# Download and install
+RUN apk add --update curl &&\
+  curl -LO http://mirrors.standaloneinstaller.com/apache/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
+  curl -LO https://www.apache.org/dist/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.sha512 &&\
+  sha512sum -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.sha512 &&\
+  gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
+  rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz.sha512 &&\
+  ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat &&\
+  rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs &&\
+  apk del curl &&\
+  rm -rf /var/cache/apk/*
+
+# Configuration
+ADD tomcat-users.xml /opt/tomcat/conf/
+RUN sed -i 's/52428800/5242880000/g' /opt/tomcat/webapps/manager/WEB-INF/web.xml
+
+# Set environment
+ENV CATALINA_HOME /opt/tomcat
+
+# Launch Tomcat on startup
+CMD ${CATALINA_HOME}/bin/catalina.sh run

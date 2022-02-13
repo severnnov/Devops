@@ -1,7 +1,7 @@
 version "3"
 services:
   tomcat:
-    build: tomcat
+    build: Tomcat
     volumes:
       - mydata: /home/tomcat9/apache-tomcat-9.0.58/webapps/
     ports:

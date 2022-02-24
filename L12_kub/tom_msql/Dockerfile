@@ -1,1 +1,1 @@
-FROM tomcat-mysql:latest
+FROM aallam/tomcat-mysql

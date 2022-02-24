@@ -1,0 +1,17 @@
+version: "3"
+services:
+  tomcat:
+    build: tom_msql
+    volumes:
+      - mydata:/usr/local/tomcat/webapps/
+    ports:
+      - "8084:8080"
+    depends_on:
+      - "maven"
+  maven:
+    build: mvn
+    volumes:
+      - mydata:/tmp/mvn/1/target/
+
+volumes:
+    mydata:

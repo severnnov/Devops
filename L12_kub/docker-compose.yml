@@ -16,7 +16,7 @@ services:
   mysql:
     build: mysql
     ports:
-      - "8514:33060"
+      - "8514:3306"
     environment:
       MYSQL_DATABASE: dd
       MYSQL_USER: acp4pogynvaeidfj

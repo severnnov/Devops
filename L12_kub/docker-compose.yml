@@ -6,22 +6,17 @@ services:
       - mydata:/opt/tomcat/webapps/
     ports:
       - "8084:8080"
+      - "8514:3306"
+    environment:
+          MYSQL_DATABASE: dd
+          MYSQL_USER: acp4pogynvaeidfj
+          MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
+          MYSQL_ROOT_PASSWORD: test
     depends_on:
       - "maven"
-      - "mysql"
   maven:
     build: mvn
     volumes:
       - mydata:/tmp/mvn/1/target/
-  mysql:
-    build: mysql
-    ports:
-      - "8514:33060"
-    environment:
-      MYSQL_DATABASE: dd
-      MYSQL_USER: acp4pogynvaeidfj
-      MYSQL_PASSWORD: jc31d2qyy7h9jv5jn1u9uosjksxzaizw
-      MYSQL_ROOT_PASSWORD: test
-
 volumes:
     mydata:

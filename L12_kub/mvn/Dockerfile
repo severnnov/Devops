@@ -4,6 +4,6 @@ RUN git clone https://github.com/shephertz/App42PaaS-Java-MySQL-Sample.git "/tmp
 RUN echo "app42.paas.db.username = "acp4pogynvaeidfj"
 app42.paas.db.port = "8514"
 app42.paas.db.password = "jc31d2qyy7h9jv5jn1u9uosjksxzaizw"
-app42.paas.db.ip = "62.84.123.101"
+app42.paas.db.ip = "0.0.0.0"
 app42.paas.db.name = "dd"" > /App42PaaS-Java-MySQL-Sample/WebContent/Config.properties
 RUN mvn package -B -f "/tmp/mvn/1"

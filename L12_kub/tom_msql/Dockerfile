@@ -1,2 +1,2 @@
-#FROM aallam/tomcat-mysql
-FROM tomcat
+FROM aallam/tomcat-mysql
+#FROM tomcat

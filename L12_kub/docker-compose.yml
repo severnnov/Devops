@@ -22,7 +22,7 @@ services:
   maven:
     build: mvn
     volumes:
-      - ./content:/tmp/mvn/1/WebContent/
+      - ./Config.properties:/tmp/mvn/1/WebContent/сonfig.properties
       - mydata:/tmp/mvn/1/target/
 volumes:
     mydata:

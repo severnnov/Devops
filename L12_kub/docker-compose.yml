@@ -1,7 +1,7 @@
 version: "3"
 services:
   tomcat:
-    build: tom_msql
+    image: tomcat
     volumes:
       - mydata:/usr/local/tomcat/webapps/
     ports:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - "maven"
   mysql:
-    build: mysql
+    image: mysql
     ports:
       - "3306:3306"
     environment:
@@ -24,5 +24,7 @@ services:
     volumes:
       - ./Config.properties:/tmp/mvn/1/WebContent/Config.properties
       - mydata:/tmp/mvn/1/target/
+  redis:
+    image: redis:latest
 volumes:
     mydata:

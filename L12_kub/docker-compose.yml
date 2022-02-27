@@ -4,6 +4,7 @@ services:
     image: tomcat
     volumes:
       - mydata:/usr/local/tomcat/webapps/
+      - - ./Config.properties:/usr/local/tomcat/webapps/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT/Config.properties
     ports:
       - "8084:8080"
     depends_on:
@@ -22,7 +23,6 @@ services:
   maven:
     build: mvn
     volumes:
-      - ./Config.properties:/tmp/mvn/1/WebContent/Config.properties
       - mydata:/tmp/mvn/1/target/
   redis:
     image: redis:latest

@@ -6,7 +6,11 @@ services:
       - mydata:/opt/tomcat/webapps/
     ports:
       - "8084:8080"
-      - "8514:3306"
+      - "3306:3306"
+  mysql:
+    build: mysql
+    ports:
+      - "3306:3306"
     environment:
           MYSQL_DATABASE: dd
           MYSQL_USER: acp4pogynvaeidfj
@@ -17,6 +21,8 @@ services:
   maven:
     build: mvn
     volumes:
+      - ./content:/tmp/mvn/1/WebContent/
       - mydata:/tmp/mvn/1/target/
+mysql://mysql:3306
 volumes:
     mydata:

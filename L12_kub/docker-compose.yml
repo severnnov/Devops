@@ -24,6 +24,7 @@ services:
     build: mvn
     volumes:
       - mydata:/tmp/mvn/1/target/
+      - ./pom.xml:/tmp/mvn/1/pom.xml
   redis:
     image: redis:latest
 volumes:

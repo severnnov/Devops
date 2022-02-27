@@ -3,7 +3,7 @@ services:
   tomcat:
     build: tom_msql
     volumes:
-      - mydata:/opt/tomcat/webapps/
+      - mydata:/usr/local/tomcat/webapps/
     ports:
       - "8084:8080"
     depends_on:
@@ -22,7 +22,7 @@ services:
   maven:
     build: mvn
     volumes:
-      - ./Config.properties:/tmp/mvn/1/WebContent/сonfig.properties
+      - ./Config.properties:/tmp/mvn/1/WebContent/Config.properties
       - mydata:/tmp/mvn/1/target/
 volumes:
     mydata:

@@ -1,7 +1,7 @@
 version: "3"
 services:
   tomcat:
-    image: 8.5.75-jdk8-corretto
+    image: tomcat:9.0.58-jre8-openjdk-slim-bullseye
     volumes:
       - mydata:/usr/local/tomcat/webapps/
       - ./Config.properties:/usr/local/tomcat/webapps/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT/Config.properties

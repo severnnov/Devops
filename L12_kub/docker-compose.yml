@@ -6,6 +6,8 @@ services:
       - mydata:/opt/tomcat/webapps/
     ports:
       - "8084:8080"
+    depends_on:
+      - "maven"
   mysql:
     build: mysql
     ports:
@@ -22,6 +24,6 @@ services:
     volumes:
       - ./content:/tmp/mvn/1/WebContent/
       - mydata:/tmp/mvn/1/target/
-mysql://mysql:3306
 volumes:
     mydata:
+mysql://mysql:3306

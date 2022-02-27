@@ -8,7 +8,6 @@ services:
       - "8084:8080"
     depends_on:
       - "maven"
-    mysql://mysql:3306
   mysql:
     build: mysql
     ports:

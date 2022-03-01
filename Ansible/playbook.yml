@@ -1,0 +1,17 @@
+---
+- name: build app
+  tasks:
+    - name: Install maven
+      apt:
+        name: maven
+        state: latest
+    - name: Install git
+      apt:
+        name: git
+        state: latest
+    - name: Clone a repo to directory
+      ansible.builtin.git:
+        repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+        dest: /tmp/1/maven
+    - name: build war
+      ansible.builtin.command: mvn package -B -f /tmp/mvn/1

@@ -24,15 +24,15 @@
          vpc_subnet_id: subnet-29e63245
          assign_public_ip: yes
     - name: Launch prod
-        amazon.aws.ec2:
-          key_name: "{{ keypair }}"
-          group: prod
-          instance_type: "{{ instance_type }}"
-          image: "{{ image }}"
-          wait: true
-          region: "{{ region }}"
-          vpc_subnet_id: subnet-29e63245
-          assign_public_ip: yes
+      amazon.aws.ec2:
+         key_name: "{{ keypair }}"
+         group: prod
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-29e63245
+         assign_public_ip: yes
 - name: build app
   group: build
   tasks:

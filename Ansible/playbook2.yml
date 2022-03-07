@@ -31,6 +31,7 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-29e63245
          assign_public_ip: yes
+
 - name: Build app
   group: build
   tasks:
@@ -50,8 +51,6 @@
       command: mvn package -B -f /tmp/mvn/1
     - name: Simple PUT operation
       aws_s3:
-        AWS_ACCESS_KEY_ID: AKIAXJWLXA3F6DBE2KMQ
-        AWS_ACCESS_KEY: ZIsSwwE4cITIR8jfyE4yYdYMGxGB/tl56M8qphQB
         bucket: boxfuse
         object: /my/desired/boxfuse/
         src: /tmp/1/maven/target/hello-1.0.war

@@ -3,18 +3,16 @@
   hosts: localhost
   gather_facts: False
   vars:
-    keypair: aws1
+    keypair: aws2
     instance_type: m3.micro
     security_group: my_securitygroup
     image: ami-092cce4a19b438926
     region: eu-north-1
     group: ['build', 'prod']
     count: 2
-    AWS_ACCESS_KEY_ID: AKIAXJWLXA3F6DBE2KMQ
-    AWS_ACCESS_KEY: ZIsSwwE4cITIR8jfyE4yYdYMGxGB/tl56M8qphQB
   tasks:
     - name: Launch build
-      amazon.aws.ec2:
+      ec2:
          key_name: "{{ keypair }}"
          group: build
          instance_type: "{{ instance_type }}"
@@ -24,7 +22,7 @@
          vpc_subnet_id: subnet-29e63245
          assign_public_ip: yes
     - name: Launch prod
-      amazon.aws.ec2:
+      ec2:
          key_name: "{{ keypair }}"
          group: prod
          instance_type: "{{ instance_type }}"
@@ -45,13 +43,13 @@
         name: git
         state: latest
     - name: Clone a repo to directory
-      ansible.builtin.git:
+      git:
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
         dest: /tmp/1/maven/
     - name: build war
-      ansible.builtin.command: mvn package -B -f /tmp/mvn/1
+      command: mvn package -B -f /tmp/mvn/1
     - name: Simple PUT operation
-      amazon.aws.aws_s3:
+      aws_s3:
         AWS_ACCESS_KEY_ID: AKIAXJWLXA3F6DBE2KMQ
         AWS_ACCESS_KEY: ZIsSwwE4cITIR8jfyE4yYdYMGxGB/tl56M8qphQB
         bucket: boxfuse

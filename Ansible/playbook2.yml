@@ -31,7 +31,7 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-29e63245
          assign_public_ip: yes
-- name: build app
+- name: Build app
   group: build
   tasks:
     - name: Install maven

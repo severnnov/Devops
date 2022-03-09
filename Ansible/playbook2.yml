@@ -64,5 +64,19 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes
+    - name: install JDK 11
+      apt:
+          name: openjdk-11-jdk
+          state: present
+    - name: install tomcat9
+      apt:
+          name: tomcat9
+          state: latest
+    - name: s3 get operation
+          aws_s3:
+            bucket: severov.boxfuse
+            object: /my/desired/boxfuse/hello-1.0.war
+            dest: /var/lib/webapps/hello-1.0.war
+            mode: get
 
 

@@ -51,7 +51,7 @@
       shell: mvn package -B -f /tmp/1/maven
     - name: Simple PUT operation
       aws_s3:
-        bucket: boxfuse
+        bucket: severov.boxfuse
         object: /my/desired/boxfuse/
         src: /tmp/1/maven/target/hello-1.0.war
         mode: put

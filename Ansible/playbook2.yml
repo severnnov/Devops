@@ -6,7 +6,7 @@
     keypair: aws2
     instance_type: t3.micro
     security_group: homework
-    image: ami-092cce4a19b438926
+    image: ami-04505e74c0741db8d
     region: us-east-1
     count: 2
   tasks:

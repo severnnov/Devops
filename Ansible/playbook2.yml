@@ -74,7 +74,7 @@
       apt:
           name: tomcat9
           update_cache: yes
-          state: latest
+          state: present
     - name: s3 get operation
       aws_s3:
         bucket: severov.boxfuse

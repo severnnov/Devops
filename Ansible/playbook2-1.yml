@@ -1,0 +1,48 @@
+---
+- name: Create a instances
+  hosts: localhost
+  gather_facts: False
+  vars:
+    keypair: aws2
+    instance_type: t3.micro
+    security_group: homework
+    image: ami-04505e74c0741db8d
+    region: us-east-1
+  tasks:
+    - name: Create a security group
+      ec2_group:
+        name: "{{ security_group }}"
+        description: Open ports 22, 8080
+        region: "{{ region }}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 8080
+            to_port: 8080
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: all
+            cidr_ip: 0.0.0.0/0
+    - name: Launch build
+      amazon.aws.ec2_instance:
+         key_name: "{{ keypair }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-29e63245
+         network:
+           assign_public_ip: yes
+    - name: Launch prod
+      amazon.aws.ec2_instance:
+         key_name: "{{ keypair }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-29e63245
+         network:
+          assign_public_ip: yes

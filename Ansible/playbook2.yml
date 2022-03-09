@@ -28,7 +28,7 @@
           - proto: all
             cidr_ip: 0.0.0.0/0
     - name: Launch build
-      ec2:
+      amazon.aws.ec2:
          key_name: "{{ keypair }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
@@ -37,7 +37,7 @@
          vpc_subnet_id: subnet-29e63245
          assign_public_ip: yes
     - name: Launch prod
-      ec2:
+      amazon.aws.ec2:
          key_name: "{{ keypair }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"

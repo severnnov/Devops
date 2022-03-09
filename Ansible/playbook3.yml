@@ -1,5 +1,4 @@
-- name: app
-  group: build
+- name: build war
   tasks:
     - name: Install maven
       apt:
@@ -16,13 +15,18 @@
     - name: build war
       command: mvn package -B -f /tmp/mvn/1
     - name: Simple PUT operation
-      aws_s3:
+      amazon.aws.aws_s3:
         bucket: boxfuse
         object: /my/desired/boxfuse/
         src: /tmp/1/maven/target/hello-1.0.war
         mode: put
-#- name: Simple GET operation
-#                amazon.aws.aws_s3:
+- name: public app
+  tasks:
+    - name: install tomcat
+      apt:
+        name: tomcat9
+- name: Simple GET operation
+                amazon.aws.aws_s3:
  #                 AWS_ACCESS_KEY_ID: AKIAXJWLXA3F6DBE2KMQ
   #                AWS_ACCESS_KEY: ZIsSwwE4cITIR8jfyE4yYdYMGxGB/tl56M8qphQB
    #               bucket: boxfuse

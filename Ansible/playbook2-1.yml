@@ -33,7 +33,7 @@
          image_id: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-29e63245
+         vpc_subnet_id: subnet-5ca1ab1e
          network:
            assign_public_ip: yes
          tags:
@@ -45,7 +45,7 @@
          image_id: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-29e63245
+         vpc_subnet_id: subnet-5ca1ab1e
          network:
           assign_public_ip: yes
          ags:

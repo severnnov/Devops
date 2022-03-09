@@ -125,10 +125,10 @@
         state: started
         daemon_reload: true
     - name: s3 get operation
-        aws_s3:
-          bucket: severov.boxfuse
-          object: /my/desired/boxfuse/hello-1.0.war
-          dest: /opt/tomcat10/webapps/hello-1.0.war
-          mode: get
+      aws_s3:
+        bucket: severov.boxfuse
+        object: /my/desired/boxfuse/hello-1.0.war
+        dest: /opt/tomcat10/webapps/hello-1.0.war
+        mode: get
 
 

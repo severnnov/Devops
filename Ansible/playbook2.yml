@@ -33,7 +33,6 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes
     - name: Launch prod
       ec2:
@@ -42,7 +41,6 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes
 
 

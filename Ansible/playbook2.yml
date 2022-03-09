@@ -52,7 +52,7 @@
     - name: Simple PUT operation
       aws_s3:
         bucket: severov.boxfuse
-        object: /my/desired/boxfuse/
+        object: /my/desired/boxfuse/hello-1.0.war
         src: /tmp/1/maven/target/hello-1.0.war
         mode: put
     - name: Launch prod

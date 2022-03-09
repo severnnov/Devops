@@ -33,7 +33,28 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
+         vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes
+      tasks:
+        - name: Install maven
+          apt:
+            name: maven
+            state: latest
+        - apt:
+          name: git
+          state: latest
+        - name: Clone a repo to directory
+          git:
+          repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+          dest: /tmp/1/maven/
+        - name: build war
+          command: mvn package -B -f /tmp/mvn/1
+        - name: Simple PUT operation
+          amazon.aws.aws_s3:
+            bucket: boxfuse
+            object: /my/desired/boxfuse/
+            src: /tmp/1/maven/target/hello-1.0.war
+            mode: put
     - name: Launch prod
       ec2:
          key_name: "{{ keypair }}"
@@ -41,6 +62,7 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
+         vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes
 
 

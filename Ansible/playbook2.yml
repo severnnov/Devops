@@ -73,10 +73,10 @@
           name: tomcat9
           state: latest
     - name: s3 get operation
-          aws_s3:
-            bucket: severov.boxfuse
-            object: /my/desired/boxfuse/hello-1.0.war
-            dest: /var/lib/webapps/hello-1.0.war
-            mode: get
+      aws_s3:
+        bucket: severov.boxfuse
+        object: /my/desired/boxfuse/hello-1.0.war
+        dest: /var/lib/webapps/hello-1.0.war
+        mode: get
 
 

@@ -4,17 +4,38 @@
   gather_facts: False
   vars:
     keypair: aws2
-    instance_type: m3.micro
-    security_group: my_securitygroup
+    instance_type: t3.micro
+    security_group: homework
     image: ami-092cce4a19b438926
     region: eu-north-1
-    group: ['build', 'prod']
     count: 2
   tasks:
+    - name: Create a security group
+      local_action:
+        module: ec2_group
+        name: "{{ security_group }}"
+        description: Open ports 22, 8080
+        region: "{{ region }}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: all
+            cidr_ip: 0.0.0.0/0
+        register: basic_firewall
     - name: Launch build
       ec2:
          key_name: "{{ keypair }}"
-         group: build
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
@@ -24,7 +45,6 @@
     - name: Launch prod
       ec2:
          key_name: "{{ keypair }}"
-         group: prod
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true

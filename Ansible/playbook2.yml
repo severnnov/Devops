@@ -48,7 +48,7 @@
         repo: https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
         dest: /tmp/1/maven/
     - name: build war
-        shell: mvn package -B -f /tmp/mvn/1
+      shell: mvn package -B -f /tmp/mvn/1
     - name: Simple PUT operation
        aws_s3:
          bucket: boxfuse

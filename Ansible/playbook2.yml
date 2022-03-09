@@ -7,7 +7,7 @@
     instance_type: t3.micro
     security_group: homework
     image: ami-092cce4a19b438926
-    region: eu-north-1
+    region: us-east-1
     count: 2
   tasks:
     - name: Create a security group

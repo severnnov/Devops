@@ -31,6 +31,7 @@
          key_name: "{{ keypair }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
+         group: "{{ security_group }}"
          wait: true
          region: "{{ region }}"
          vpc_subnet_id: subnet-02de6ea80a0f4f962
@@ -61,6 +62,7 @@
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
+         group: "{{ security_group }}"
          region: "{{ region }}"
          vpc_subnet_id: subnet-02de6ea80a0f4f962
          assign_public_ip: yes

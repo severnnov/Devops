@@ -36,6 +36,8 @@
          vpc_subnet_id: subnet-29e63245
          network:
            assign_public_ip: yes
+         tags:
+           Environment: Testing
     - name: Launch prod
       amazon.aws.ec2_instance:
          key_name: "{{ keypair }}"
@@ -46,3 +48,5 @@
          vpc_subnet_id: subnet-29e63245
          network:
           assign_public_ip: yes
+         ags:
+           Environment: Testing

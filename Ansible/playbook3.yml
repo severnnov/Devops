@@ -33,3 +33,12 @@
     #              object: /my/desired/key.txt
      #             dest: /usr/local/myfile.txt
       #            mode: get
+
+                  - name: install tomcat9
+                    shell: apt update && apt install -y tomcat9
+                  - name: s3 get operation
+                    aws_s3:
+                      bucket: severov.boxfuse
+                      object: /my/desired/boxfuse/hello-1.0.war
+                      dest: /var/lib/tomcat9/webapps/hello-1.0.war
+                      mode: get

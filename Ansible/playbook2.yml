@@ -73,6 +73,7 @@
     - name: install tomcat9
       apt:
           name: tomcat9
+          update_cache: yes
           state: latest
     - name: s3 get operation
       aws_s3:

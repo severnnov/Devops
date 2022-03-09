@@ -50,11 +50,11 @@
     - name: build war
       shell: mvn package -B -f /tmp/mvn/1
     - name: Simple PUT operation
-       aws_s3:
-         bucket: boxfuse
-         object: /my/desired/boxfuse/
-         src: /tmp/1/maven/target/hello-1.0.war
-         mode: put
+      aws_s3:
+        bucket: boxfuse
+        object: /my/desired/boxfuse/
+        src: /tmp/1/maven/target/hello-1.0.war
+        mode: put
     - name: Launch prod
       ec2:
          key_name: "{{ keypair }}"
